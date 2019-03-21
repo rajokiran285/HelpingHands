@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registerpage"
+    android:orientation="vertical"
+    android:background="#61BAD3">
+
+    <ImageView
+        android:layout_marginTop="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logo"
+        android:layout_gravity="center"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColorHint="#000"
+        android:layout_marginTop="60dp">
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="User Name"
+        android:gravity="center"
+        android:textColor="#000"
+        android:layout_gravity="center"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="#000"
+        android:layout_gravity="center">
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="User id"
+        android:gravity="center"
+        android:textColor="#000"
+        android:layout_gravity="center"
+        />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="#000"
+
+        android:layout_gravity="center">
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="password"
+        android:textColor="#000"
+        android:gravity="center"
+        android:layout_gravity="center"
+        />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="#000"
+        android:layout_gravity="center">
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Re_type password"
+        android:gravity="center"
+        android:textColor="#000"
+        android:layout_gravity="center"
+        />
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:layout_gravity="center"
+        android:background="@drawable/shape"
+        />
+
+
+
+
+
+
+</LinearLayout>
