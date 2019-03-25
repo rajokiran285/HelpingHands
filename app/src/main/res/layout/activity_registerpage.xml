@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColorHint="#000"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:id="@+id/R_username">
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -35,12 +36,14 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textColorHint="#000"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:id="@+id/R_emailid"
+        >
 
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:hint="User id"
+        android:hint="Email-id"
         android:gravity="center"
         android:textColor="#000"
         android:layout_gravity="center"
@@ -51,8 +54,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textColorHint="#000"
-
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:id="@+id/R_pass">
 
     <EditText
         android:layout_width="200dp"
@@ -85,6 +88,7 @@
         android:text="Register"
         android:layout_gravity="center"
         android:background="@drawable/shape"
+        android:id="@+id/regbttn"
         />
 
 

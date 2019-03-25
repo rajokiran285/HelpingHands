@@ -1,21 +1,33 @@
 package com.example.helpinghands;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.helpinghands.model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +37,14 @@ public class Chatpage extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
 
     private ArrayList<String> horizontal_list,msg_list;
+    ArrayList<User> mUser;
 
     private HorizontalAdapter horizontalAdapter;
 
     int img[]={R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.four,R.drawable.five,R.drawable.six,R.drawable.seven,R.drawable.eight,R.drawable.nine,R.drawable.ten};
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +61,31 @@ public class Chatpage extends AppCompatActivity {
 //        toolbar.setSubtitle("Test Subtitle");
         toolbar.inflateMenu(R.menu.data_menu);
 
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.profile)
+                {
+                    Intent i4=new Intent(getApplicationContext(),profile.class);
+                    startActivity(i4);
+
+                }
+                else if (menuItem.getItemId()==R.id.logout)
+                {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent i6=new Intent(getApplicationContext(),Loginpage.class);
+                    startActivity(i6);
+                    finish();
+                }
+                return false;
+            }
+        });
+
         horizontal_recycler_view=(RecyclerView)findViewById(R.id.list);
         horizontal_list=new ArrayList<String>();
         msg_list=new ArrayList<String>();
+        mUser=new ArrayList<User>();
 
         horizontal_list.add(" 1 ");
         horizontal_list.add(" 2 ");
@@ -72,9 +110,11 @@ public class Chatpage extends AppCompatActivity {
         msg_list.add("hey");
 
 
+//        readuser();
+
+//        horizontalAdapter=new HorizontalAdapter(getApplicationContext(),mUser);
 
         horizontalAdapter=new HorizontalAdapter(horizontal_list);
-
 
         LinearLayoutManager horizontalLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManager);
@@ -83,12 +123,53 @@ public class Chatpage extends AppCompatActivity {
 
     }
 
+    private void readuser() {
+
+        final FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                mUser.clear();
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    User user=snapshot.getValue(User.class);
+
+                    assert user != null;
+                    assert firebaseUser != null;
+                    if(!user.getUserid().equals(firebaseUser.getUid())){
+                        mUser.add(user);
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+    }
+
+
     public  class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.MyViewHolder> {
         private List<String> horizontallist;
+//        List<User> mUser;
+//        Context mContext;
+
+
         public class MyViewHolder extends RecyclerView.ViewHolder
         {
             public TextView textview,textview2;
             ImageView image;
+
+
             public MyViewHolder(View view)
             {
                 super(view);
@@ -99,21 +180,38 @@ public class Chatpage extends AppCompatActivity {
 
 
         }
+//        public HorizontalAdapter(Context mContext,List<User> mUser)
+//        {
+//            this.mContext=mContext;
+//            this.mUser=mUser;
+//
+//        }
+
         public HorizontalAdapter(List<String> horizontallist)
         {
-            this.horizontallist=horizontal_list;
-
+//            this.mContext=mContext;
+//            this.mUser=mUser;
+                this.horizontallist=horizontal_list;
         }
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int ViewType)
         {
-            View itemview= LayoutInflater.from(parent.getContext()).inflate(R.layout.data,parent,false);
+            View itemview= LayoutInflater.from(getApplicationContext()).inflate(R.layout.data,parent,false);
             return new MyViewHolder(itemview);
         }
 
 
 
         public void onBindViewHolder(final MyViewHolder holder, final int position) {
-            holder.textview.setText(horizontallist.get(position));
+
+//            User user=mUser.get(position);
+//
+//            holder.textview.setText(user.getUsername());
+//            if (user.getImageurl().equals("default"))
+//            {
+//                holder.image.setImageResource(R.drawable.eight);
+//
+//            }
+            holder.textview.setText(horizontal_list.get(position));
 //            holder.textview2.setText(msg_list.get(position));
             holder.image.setImageResource(img[position]);
 
@@ -123,7 +221,7 @@ public class Chatpage extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(Chatpage.this);
                     LayoutInflater inflater = Chatpage.this.getLayoutInflater();
                     View dialogLayout = inflater.inflate(R.layout.chat_image, null);
-                    builder.setPositiveButton("OK", null);
+//                    builder.setPositiveButton("OK", null);
                     ImageView previewimage=dialogLayout.findViewById(R.id.chatimage);
                     previewimage.setImageResource(img[position]);
                     builder.setView(dialogLayout);

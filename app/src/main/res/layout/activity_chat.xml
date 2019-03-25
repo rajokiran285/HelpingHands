@@ -38,12 +38,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/shape"
         android:layout_marginBottom="30dp"
+        android:background="@drawable/shape"
+        android:orientation="horizontal"
+        >
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
         />
-
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/attachment"
+            android:rotation="-90"
+            />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/send"
+            />
+    </LinearLayout>
 </LinearLayout>
