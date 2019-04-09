@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/edit"
-        android:title="edit profile"></item>
+        android:title="change image"></item>
 
 </menu>

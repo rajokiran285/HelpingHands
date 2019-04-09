@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="110dp"
+    android:layout_height="80dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#E0F7FF">
@@ -9,47 +9,56 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:orientation="horizontal">
 
 
         <!--<LinearLayout-->
-            <!--android:layout_width="100dp"-->
-            <!--android:layout_height="100dp"-->
-            <!--android:background="@drawable/circleshape">-->
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#000"
-        android:src="@drawable/img_three"
-        android:id="@+id/img"
-        />
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:background="@drawable/circleshape">-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="#00EE09"
+            android:id="@+id/img_on"
+            android:visibility="invisible"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/img_three"
+            app:civ_border_color="#000"
+            app:civ_border_width="2dp" />
+
         <!--</LinearLayout>-->
         <LinearLayout
+            android:id="@+id/item_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sender name"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:id="@+id/name"
-            android:textColor="#000"
-            />
+
             <TextView
-                android:layout_marginTop="10dp"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="message"
-                android:textSize="20dp"
-                android:id="@+id/msg"
-                android:layout_marginLeft="30dp"
+                android:gravity="center"
+                android:text="Sender name"
                 android:textColor="#000"
-                />
+                android:textSize="25dp"
+                android:textStyle="bold" />
+            <!--<TextView-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="message"-->
+            <!--android:textSize="20dp"-->
+            <!--android:id="@+id/msg"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:textColor="#000"-->
+            <!--/>-->
 
         </LinearLayout>
     </LinearLayout>

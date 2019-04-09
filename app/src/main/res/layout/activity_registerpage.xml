@@ -6,15 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".Registerpage"
     android:orientation="vertical"
-    android:background="#61BAD3">
+    android:scaleType="fitXY"
+    android:background="@drawable/hugg">
 
     <ImageView
-        android:layout_marginTop="80dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/logo"
+        android:background="@drawable/logo_"
         android:layout_gravity="center"
         />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="#34FFFFFF">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="200dp"
@@ -71,7 +83,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textColorHint="#000"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:id="@+id/RT_pass">
 
     <EditText
         android:layout_width="200dp"
@@ -87,13 +100,14 @@
         android:layout_height="wrap_content"
         android:text="Register"
         android:layout_gravity="center"
-        android:background="@drawable/shape"
         android:id="@+id/regbttn"
+        android:background="@drawable/shape"
+        android:layout_marginTop="10dp"
         />
 
 
+        </LinearLayout>
 
-
-
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

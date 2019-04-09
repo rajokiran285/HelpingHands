@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".profile"
-    android:background="#61BAD3">
+    android:background="#61BAD3"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#47899B"
+        android:background="#065CA0"
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="@android:color/white">
 
@@ -26,6 +27,34 @@
     </android.support.v7.widget.Toolbar>
 
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:cardBackgroundColor="#4CA1B9"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/eight"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:id="@+id/pro_image"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="username"
+            android:textSize="40dp"
+            android:layout_gravity="center"
+            android:id="@+id/pro_username"
+            />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 
 
 </LinearLayout>

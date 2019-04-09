@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -53,20 +54,28 @@ public class Loginpage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String id=emailid.getEditText().getText().toString();
-                String pass=password.getEditText().getText().toString();
+                String id = emailid.getEditText().getText().toString();
+                String pass = password.getEditText().getText().toString();
 
-                auth.signInWithEmailAndPassword(id,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful())
-                        {
-                            Intent i2=new Intent(getApplicationContext(),Chatpage.class);
-                            startActivity(i2);
+                if (id.isEmpty() || pass.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Enter All Fields", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    auth.signInWithEmailAndPassword(id, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Intent i2 = new Intent(getApplicationContext(), chatpage2.class);
+                                startActivity(i2);
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
     }
+
+
+
+
 }

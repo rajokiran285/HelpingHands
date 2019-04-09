@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.helpinghands.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -109,6 +110,7 @@ public class Chatpage extends AppCompatActivity {
         msg_list.add("k");
         msg_list.add("hey");
 
+//        horizontal_recycler_view.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
 //        readuser();
 
@@ -132,14 +134,14 @@ public class Chatpage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                mUser.clear();
+//                mUser.clear();
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
                     User user=snapshot.getValue(User.class);
 
                     assert user != null;
                     assert firebaseUser != null;
-                    if(!user.getUserid().equals(firebaseUser.getUid())){
+                    if(!user.getId().equals(firebaseUser.getUid())){
                         mUser.add(user);
 
                     }
@@ -174,7 +176,7 @@ public class Chatpage extends AppCompatActivity {
             {
                 super(view);
                 textview=(TextView)view.findViewById(R.id.name);
-                textview2=(TextView)view.findViewById(R.id.msg);
+//                textview2=(TextView)view.findViewById(R.id.msg);
                 image=view.findViewById(R.id.img);
             }
 
@@ -209,7 +211,10 @@ public class Chatpage extends AppCompatActivity {
 //            if (user.getImageurl().equals("default"))
 //            {
 //                holder.image.setImageResource(R.drawable.eight);
-//
+//            }
+//            else
+//            {
+//                Glide.with(getApplicationContext()).load(user.getImageurl()).into(holder.image);
 //            }
             holder.textview.setText(horizontal_list.get(position));
 //            holder.textview2.setText(msg_list.get(position));
