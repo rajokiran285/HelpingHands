@@ -60,11 +60,15 @@ public class chat<storageReference> extends AppCompatActivity {
     Uri imageUri;
     StorageTask upload;
 
+    static final int image_rqst=1;
     RecyclerView list;
     chatadapter adapter;
     List<chats> mChat;
 
     int img[]={R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.four,R.drawable.five,R.drawable.six,R.drawable.seven,R.drawable.eight,R.drawable.nine,R.drawable.ten};
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +92,8 @@ public class chat<storageReference> extends AppCompatActivity {
         arrow=findViewById(R.id.arrow);
         Uri imageUri;
 
+
+        
 
         list=findViewById(R.id.chatlst);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
@@ -145,6 +151,9 @@ public class chat<storageReference> extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"attach",Toast.LENGTH_SHORT).show();
+
+
+
             }
         });
 
@@ -236,8 +245,7 @@ public class chat<storageReference> extends AppCompatActivity {
                             throw task.getException();
                         }
 //                        return file.getDownloadUrl();
-                    }
-
+                    };
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
@@ -336,21 +344,25 @@ public class chat<storageReference> extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == image_rqst && resultCode==RESULT_OK&&data!=null&&data.getData()!=null)
-        {
-            imageUri=data.getData();
-
-            if(upload!=null &&upload.isInProgress())
-            {
-                Toast.makeText(getApplicationContext(),"Upload in progress",Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                uploadimage();
-            }
-        }
+//        if(requestCode == image_rqst && resultCode==RESULT_OK&&data!=null&&data.getData()!=null)
+//        {
+//            imageUri=data.getData();
+//
+//            if(upload!=null &&upload.isInProgress())
+//            {
+//                Toast.makeText(getApplicationContext(),"Upload in progress",Toast.LENGTH_SHORT).show();
+//            }
+//            else
+//            {
+//                uploadimage();
+//            }
+//        }
     }
 
-
-
+    private void openimage() {
+        Intent intent=new Intent();
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent,image_rqst);
+    }
 }
