@@ -46,7 +46,7 @@ import java.util.List;
 import adapter.chatadapter;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class chat<storageReference> extends AppCompatActivity {
+public class chat extends AppCompatActivity {
 
     TextView name;
     CircleImageView image;
@@ -56,7 +56,7 @@ public class chat<storageReference> extends AppCompatActivity {
     DatabaseReference reference,reference_msg;
     FirebaseUser firebaseUser;
     Intent intent;
-    storageReference  storageReference;
+    StorageReference  storageReference;
     Uri imageUri;
     StorageTask upload;
 
@@ -74,6 +74,7 @@ public class chat<storageReference> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         final int image_rqst;
         setContentView(R.layout.activity_chat);
 
@@ -101,6 +102,7 @@ public class chat<storageReference> extends AppCompatActivity {
         list.setLayoutManager(linearLayoutManager);
 
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+//        storageReference= FirebaseStorage.getInstance().getReference("Attachments");
 
 
          intent=getIntent();
@@ -119,7 +121,7 @@ public class chat<storageReference> extends AppCompatActivity {
                 name.setText(user.getUsername());
                 if (user.getImageurl().equals("default"))
                 {
-                    image.setImageResource(R.drawable.eight);
+                    image.setImageResource(R.drawable.person);
                 }
                 else
                 {
@@ -152,7 +154,7 @@ public class chat<storageReference> extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"attach",Toast.LENGTH_SHORT).show();
 
-
+                openimage();
 
             }
         });
@@ -184,6 +186,7 @@ public class chat<storageReference> extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                mChat.clear();
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
                     chats chat=snapshot.getValue(chats.class);
@@ -200,8 +203,9 @@ public class chat<storageReference> extends AppCompatActivity {
                     adapter=new chatadapter(mChat, chat.this,imageurl);
                     list.setAdapter(adapter);
 
-
                 }
+
+
 
             }
 
@@ -231,12 +235,12 @@ public class chat<storageReference> extends AppCompatActivity {
 
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
         reference= FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-        storageReference= (storageReference) FirebaseStorage.getInstance().getReference("Chat uploads");
+        storageReference= FirebaseStorage.getInstance().getReference("Chat uploads");
 
             if (imageUri!=null)
             {
-//                final StorageReference file=storageReference.(System.currentTimeMillis()+"."+getFileExetension(imageUri));
-//                upload=file.putFile(imageUri);
+                final StorageReference file=storageReference.child(System.currentTimeMillis()+"."+getFileExetension(imageUri));
+                upload=file.putFile(imageUri);
                 upload.continueWithTask(new Continuation<UploadTask.TaskSnapshot,Task<Uri>>() {
                     @Override
                     public Task then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -244,8 +248,8 @@ public class chat<storageReference> extends AppCompatActivity {
                         {
                             throw task.getException();
                         }
-//                        return file.getDownloadUrl();
-                    };
+                        return file.getDownloadUrl();
+                    }
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
@@ -344,19 +348,19 @@ public class chat<storageReference> extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-//        if(requestCode == image_rqst && resultCode==RESULT_OK&&data!=null&&data.getData()!=null)
-//        {
-//            imageUri=data.getData();
-//
-//            if(upload!=null &&upload.isInProgress())
-//            {
-//                Toast.makeText(getApplicationContext(),"Upload in progress",Toast.LENGTH_SHORT).show();
-//            }
-//            else
-//            {
-//                uploadimage();
-//            }
-//        }
+        if(requestCode == image_rqst && resultCode==RESULT_OK&&data!=null&&data.getData()!=null)
+        {
+            imageUri=data.getData();
+
+            if(upload!=null &&upload.isInProgress())
+            {
+                Toast.makeText(getApplicationContext(),"Upload in progress",Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                uploadimage();
+            }
+        }
     }
 
     private void openimage() {

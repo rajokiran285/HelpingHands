@@ -60,14 +60,14 @@ public class chatadapter extends RecyclerView.Adapter<chatadapter.Viewholder> {
 
         viewHolder.displaymessage.setText(chat.getMessage());
 
-        if (imageurl.equals("default"))
-        {
-            viewHolder.image.setImageResource(R.drawable.eight);
-        }
-        else
-        {
-            Glide.with(mContext).load(imageurl).into(viewHolder.image);
-        }
+//        if (imageurl.equals("default"))
+//        {
+//            viewHolder.image.setImageResource(R.drawable.person);
+//        }
+//        else
+//        {
+//            Glide.with(mContext).load(imageurl).into(viewHolder.image);
+//        }
 
     }
 
@@ -79,14 +79,14 @@ public class chatadapter extends RecyclerView.Adapter<chatadapter.Viewholder> {
     public class Viewholder extends RecyclerView.ViewHolder {
 
         public TextView displaymessage;
-        ImageView image;
+//        ImageView image;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
 
             displaymessage = itemView.findViewById(R.id.message_name);
 //            textview2 = (TextView) itemView.findViewById(R.id.msg);
-            image = itemView.findViewById(R.id.message_img);
+//            image = itemView.findViewById(R.id.message_img);
         }
     }
 

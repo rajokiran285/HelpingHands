@@ -18,8 +18,8 @@
         app:titleTextColor="@android:color/white">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
             android:background="@drawable/arrow"
             android:id="@+id/arrow"
             />
@@ -27,7 +27,9 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/chatimg"
             android:layout_width="60dp"
-            android:layout_height="60dp" />
+            android:layout_height="60dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#000"/>
 
         <TextView
             android:id="@+id/chatname"
@@ -58,7 +60,7 @@
     <EditText
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="30dp"
         android:id="@+id/chattext"
         />
         <ImageButton

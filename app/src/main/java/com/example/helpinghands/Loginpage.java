@@ -1,5 +1,7 @@
 package com.example.helpinghands;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
@@ -77,5 +79,39 @@ public class Loginpage extends AppCompatActivity {
 
 
 
+    @Override
+    public void onBackPressed() {
 
+        final AlertDialog.Builder builder = new AlertDialog.Builder(Loginpage.this);
+//        LayoutInflater inflater = chatpage2.this.getLayoutInflater();
+//        View dialogLayout = inflater.inflate(R.layout.chat_image, null);
+////                    builder.setPositiveButton("OK", null);
+//        ImageView previewimage=dialogLayout.findViewById(R.id.chatimage);
+//        previewimage.setImageDrawable(img);
+//        builder.setView(dialogLayout);
+        builder.setMessage("Log out");
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+//                FirebaseAuth.getInstance().signOut();
+//                dialog.dismiss();
+//                Intent i6=new Intent(getApplicationContext(),Loginpage.class);
+//                startActivity(i6);
+
+                finish();
+
+
+
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert=builder.create();
+        alert.show();
+    }
 }

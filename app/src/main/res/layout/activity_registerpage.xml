@@ -7,11 +7,11 @@
     tools:context=".Registerpage"
     android:orientation="vertical"
     android:scaleType="fitXY"
-    android:background="@drawable/hugg">
+    android:background="#065CA0">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
         android:background="@drawable/logo_"
         android:layout_gravity="center"
         />

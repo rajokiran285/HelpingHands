@@ -47,7 +47,7 @@ public class recycleradapter extends RecyclerView.Adapter<recycleradapter.Viewho
         viewHolder.textview.setText(user.getUsername());
             if (user.getImageurl().equals("default"))
             {
-                viewHolder.image.setImageResource(R.drawable.eight);
+                viewHolder.image.setImageResource(R.drawable.person);
             }
             else
             {

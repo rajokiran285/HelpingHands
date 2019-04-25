@@ -96,7 +96,7 @@ public class profile extends AppCompatActivity {
                 name.setText(user.getUsername());
                 if (user.getImageurl().equals("default"))
                 {
-                    image.setImageResource(R.drawable.eight);
+                    image.setImageResource(R.drawable.person);
                 }
                 else
                 {

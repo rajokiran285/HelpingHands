@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.helpinghands.model.Location;
@@ -45,7 +46,7 @@ public class chatpage2 extends AppCompatActivity implements  LocationListener {
     ViewPager page;
     FirebaseUser firebaseUser;
     DatabaseReference reference;
-    FloatingActionButton a;
+    Button a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,17 +94,18 @@ public class chatpage2 extends AppCompatActivity implements  LocationListener {
         tab.setupWithViewPager(page);
 
 
-        String mUser=firebaseUser.getUid();
-        String msg="";
-//        sendmessage( mUser,msg);
+        final String mUser=firebaseUser.getUid();
+        final String msg="S.O.S";
 
-
+        a=findViewById(R.id.floating);
         a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //
 //                LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 //                Location location = ;
+
+                sendmessage( mUser,msg);
 
             }
         });
